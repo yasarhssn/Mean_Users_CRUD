@@ -1,0 +1,192 @@
+<!-- <p>ramkumars project</p> -->
+<div class="row">
+    <div class="col-sm-6">
+
+        <div class="card">
+
+            <div class="card-header strong info-color white-text text-center">
+                Create User(Add/Register)
+            </div>
+
+            <div class="card-body">
+
+                <form #userForm="ngForm" (ngSubmit)="userForm.valid && onSubmit(userForm)">
+                         <div class="md-form">
+                            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUser._id" class="form=control" id="userForm_id" mdbInput/>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="text" name="username" #username="ngModel" [(ngModel)]="userService.selectedUser.username" class="form-control" id="userFormusername" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !username.valid}"/>
+                            <label for="userFormusername">UserName</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && username.errors">
+                            <label *ngIf="username.errors.required">User Name required</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="text" name="email" #email="ngModel" [(ngModel)]="userService.selectedUser.email" class="form-control" id="userFormemail" 
+                            mdbInput required [pattern]="emailRegex" [ngClass]="{'invalid' : userForm.submitted && !email.valid}"/>
+                            <label for="userFormemail">Email</label>                            
+                        </div>
+
+                        <div *ngIf="userForm.submitted && email.errors">
+                            <label *ngIf="email.errors.required">Email Required!</label>
+                            <label *ngIf="email.errors.pattern">Email is invalid!</label>
+                        </div>
+
+                        <fieldset ngModelGroup="address">
+                        <div class="md-form">
+                            <input type="text" name="street" #street="ngModel" [(ngModel)]="userService.selectedUser.address.street" class="form-control" id="userFormAddressStreet" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !street.valid}"/>
+                            <label for="userFormAddressStreet">Address - Street</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && street.errors">
+                            <label *ngIf="street.errors">Address street required!</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="text" name="suite" #suite="ngModel" [(ngModel)]="userService.selectedUser.address.suite" class="form-control" id="userFormAddressSuite" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !suite.valid}"/>
+                            <label for="userFormAddressSuite">Address - Suite</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && suite.errors">
+                            <label *ngIf="suite.errors">Address Suite required!</label>
+                        </div>
+
+                        
+                        <div class="md-form">
+                            <input type="text" name="city" #city="ngModel" [(ngModel)]="userService.selectedUser.address.city" class="form-control" id="userFormAddressCity" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !city.valid}"/>
+                            <label for="userFormAddressCity">Address - City</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && city.errors">
+                            <label *ngIf="city.errors">Address City required!</label>
+                        </div>
+
+                        
+                        <div class="md-form">
+                            <input type="text" name="zipcode" #zipcode="ngModel" [(ngModel)]="userService.selectedUser.address.zipcode" class="form-control" id="userFormAddressZipcode" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !zipcode.valid}"/>
+                            <label for="userFormAddressZipcode">Address - Zipcode</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && zipcode.errors">
+                            <label *ngIf="zipcode.errors">Address Zipcode required!</label>
+                        </div>
+
+                        <fieldset ngModelGroup="geo">
+
+                        <div class="md-form">
+                            <input type="text" name="lat" #lat="ngModel" [(ngModel)]="userService.selectedUser.address.geo.lat" class="form-control" id="userFormAddressGeoLat" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !lat.valid}"/>
+                            <label for="userFormAddressGeoLat">Address - Geo Lat</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && lat.errors">
+                            <label *ngIf="lat.errors">Address - Geo Lat required!</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="text" name="lang" #lang="ngModel" [(ngModel)]="userService.selectedUser.address.geo.lang" class="form-control" id="userFormAddressGeoLang" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !lang.valid}"/>
+                            <label for="userFormAddressGeoLang">Address - Geo Lang</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && lang.errors">
+                            <label *ngIf="lang.errors">Address Geo Lang required!</label>
+                        </div>
+                        </fieldset>
+                    </fieldset>
+
+                        <div class="md-form">
+                            <input type="text" name="phone" #phone="ngModel" [(ngModel)]="userService.selectedUser.phone" class="form-control" id="userFormPhone" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !phone.valid}"/>
+                            <label for="userFormPhone">Phone</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && phone.errors">
+                            <label *ngIf="phone.errors">Phone number required!</label>
+                        </div>
+
+                        <div class="md-form">
+                            <input type="text" name="website" #website="ngModel" [(ngModel)]="userService.selectedUser.website" class="form-control" id="userFormWebsite" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !website.valid}"/>
+                            <label for="userFormWebsite">Website</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && website.errors">
+                            <label *ngIf="website.errors">Website required!</label>
+                        </div>
+
+<!--read!post!crud!-->
+                    <fieldset ngModelGroup="company">
+                        <div class="md-form">
+                            <input type="text" name="name" #name="ngModel" [(ngModel)]="userService.selectedUser.company.name" class="form-control" id="userFormCompanyName" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !name.valid}"/>
+                            <label for="userFormCompanyName">Company Name</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && name.errors">
+                                <label *ngIf="name.errors">Company name required!</label>
+                        </div>
+
+
+                        <div class="md-form">
+                            <input type="text" name="catchPhrase" #catchPhrase="ngModel" [(ngModel)]="userService.selectedUser.company.catchPhrase" class="form-control" id="userFormCompanyCatchPhrase" 
+                            mdbInput required [ngClass]="{'invalid' : userForm.submitted && !catchPhrase.valid}"/>
+                            <label for="userFormCompanyCatchPhrase">Company CatchPhrase</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && catchPhrase.errors">
+                            <label *ngIf="catchPhrase.errors">Company CatchPhrase required!</label>
+                        </div>
+
+                        <div class="md-form">
+                                <input type="text" name="bs" #bs="ngModel" [(ngModel)]="userService.selectedUser.company.bs" class="form-control" id="userFormCompanyBs" 
+                                mdbInput required [ngClass]="{'invalid' : userForm.submitted && !bs.valid}"/>
+                                <label for="userFormCompanyBs">Company BS</label>
+                        </div>
+
+                        <div *ngIf="userForm.submitted && bs.errors">
+                            <label *ngIf="bs.errors">Company BS required!</label>
+                        </div>
+
+                </fieldset>
+                       
+                    <button type="submit" class="btn btn-primary">save</button>
+                </form>
+            </div>
+        </div>
+      
+    </div>
+    <div class="col-sm-6">
+        <table mdbTable>
+            <thead  class="info-color white-text">
+                <tr>
+                    <th>UserName</th>
+                    <th>City</th>
+                    <th>CompanyName</th>
+                </tr>
+                        
+
+            </thead>
+            <tbody>
+                <tr mdbTableCol *ngFor="let user of this.userService.users">
+                    <td>{{user.username}}</td>
+                    <td>{{user.address.city}}</td>
+                    <td>{{user.company.name}}</td>
+                    <td><i class="fas fa-edit" (click)="onEdit(user)"></i></td>
+                <td>    <i class="fas fa-fire" (click)="onDelete(user._id,form)"></i></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-danger">Edit/Delete</button> -->
+    </div>
+    
+</div>
