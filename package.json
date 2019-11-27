@@ -4,5 +4,9 @@
     "version": "0.1.0",
     "scripts": {
         "postinstall": "npm install --prefix Server && npm install --prefix AngularClient"
-    }
+    },
+    "engines": {
+        "node": "v10.16.3",
+        "npm": "6.11.3"
+      }
 }
