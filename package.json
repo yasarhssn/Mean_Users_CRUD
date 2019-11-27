@@ -1,0 +1,8 @@
+
+{
+    "name" : "mean_users_crud",
+    "version": "0.1.0",
+    "scripts": {
+        "postinstall": "npm install --prefix Server && npm install --prefix AngularClient"
+    }
+}
