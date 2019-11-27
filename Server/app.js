@@ -18,3 +18,10 @@ app.use('/api',indexRoutes);
 //start-server
 app.listen(process.env.PORT,()=> console.log(`server started at running at port: + ${process.env.PORT}`));
 
+//create link to angular build directory
+
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
+
+

@@ -2,7 +2,7 @@
     "production" : 
     {
         "PORT"  : 3000,
-        "MONGODB_URI" :"mongodb://localhost:27017/UserInternDB"
+        "MONGODB_URI" : "mongodb://localhost:27017/UserInternDB" 
     },
     "development" : 
     {
