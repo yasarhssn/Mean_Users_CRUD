@@ -25,13 +25,13 @@ app.listen(process.env.PORT || 8080,()=> console.log(`server started at running 
 //create link to angular build directory
 
 //var distDir = __dirname + "/dist/";
-app.use('/',express.static(path.join(__dirname + 'public')));
+app.use('/',express.static(path.join(__dirname + '/public')));
 
 
 app.get("*",(req,res)=>
 {
     console.log('gett');
-    res.sendFile(path.join(__dirname + 'public/index.html'));
+    res.sendFile(path.join(__dirname + '/public/index.html'));
 
 });
 
