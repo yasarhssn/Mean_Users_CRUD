@@ -10,6 +10,8 @@ const cors = require('cors');
 
 const indexRoutes = require('./routes/index.routes');
 
+
+var port = process.env.PORT || 3000;
 var app = express();
 
 //middleware
