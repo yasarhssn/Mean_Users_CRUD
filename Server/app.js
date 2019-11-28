@@ -11,7 +11,7 @@ const cors = require('cors');
 const indexRoutes = require('./routes/index.routes');
 
 
-var port = process.env.PORT || 3000;
+//var port = process.env.PORT || 3000;
 var app = express();
 
 //middleware
@@ -20,12 +20,12 @@ app.use(cors());
 
 app.use('/api',indexRoutes);
 //start-server
-app.listen(process.env.PORT,()=> console.log(`server started at running at port: + ${process.env.PORT}`));
+app.listen(process.env.PORT || 8080,()=> console.log(`server started at running at port: + ${process.env.PORT}`));
 
 //create link to angular build directory
 
 //var distDir = __dirname + "/dist/";
-app.use(express.static(path.join(__dirname + '/public')));
+app.use('/',express.static(path.join(__dirname + '/public')));
 
 
 app.get("*",(req,res)=>
