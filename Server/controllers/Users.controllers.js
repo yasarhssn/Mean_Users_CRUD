@@ -24,10 +24,20 @@ module.exports.saveUserDetails = (req,res,next)=>
     user.company.name = req.body.company.name;
     user.company.catchPhrase = req.body.company.catchPhrase;
     user.company.bs= req.body.company.bs;
+    console.log("im one step behind user.save ->may be error here!");
         user.save((err,doc)=>
         {
-            if(!err) res.send(doc);
-            else res.send(JSON.stringify(err,undefined,2));
+            console.log('within user.save');
+            if(!err)
+            {
+                console.log('successfully saved into database: response will be sent to angular');
+                 res.send(doc);
+            }
+            else 
+            {
+                console.log('not successfully saved into database-error will be d respone');
+                res.send(JSON.stringify(err,undefined,2));
+                }
         });    
 
 }

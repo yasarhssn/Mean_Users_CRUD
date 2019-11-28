@@ -319,8 +319,8 @@ let AppComponent = AppComponent_1 = class AppComponent {
 AppComponent = AppComponent_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
         declarations: [AppComponent_1],
-        exports: [AppComponent_1, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"]],
+        exports: [AppComponent_1, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ReactiveFormsModule"]],
         schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_3__["CUSTOM_ELEMENTS_SCHEMA"]]
     }),
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -507,17 +507,21 @@ let UsersComponent = UsersComponent_1 = class UsersComponent {
             console.log('onSubmit::' + form.value);
             console.log('onSubmit::' + JSON.stringify(form.value, undefined, 2));
             this.userService.postUser(form.value).subscribe((res) => {
-                console.log('postUser->correctly saved');
                 form.resetForm();
+                console.log('postUser->correctly saved:form-id-value::' + form.value._id);
+                form.value._id = "";
+                this.refreshUserList();
             }, (err) => {
-                console.log('postUser->not yet correctly saved');
+                console.log('postUser->not yet correctly saved-error coming:' + JSON.stringify(err, undefined, 2));
             });
         }
         else {
             this.userService.putUser(form.value).subscribe((res) => {
                 console.log('User updated successfully');
-                this.refreshUserList();
                 form.resetForm();
+                console.log('after-updated-form-id::' + form.value._id);
+                form.value._id = "";
+                this.refreshUserList();
             }, (err) => {
                 console.log('putuser -> not yet updated successfully');
             });
@@ -615,8 +619,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 
 const environment = {
-    production: false,
-    apiBaseUrl: "http://localhost:3000/api"
+    production: true,
+    apiBaseUrl: "api"
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -665,7 +669,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! e:\MEAN_Users_CRUD\AngularClient\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! E:\MEAN_Users_CRUD\AngularClient\src\main.ts */"./src/main.ts");
 
 
 /***/ })

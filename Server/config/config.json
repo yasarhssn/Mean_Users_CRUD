@@ -2,12 +2,13 @@
     "production" : 
     {
         "PORT"  : 3000,
-        "MONGODB_URI" : "mongodb://localhost:27017/UserInternDB" 
+        "MONGODB_URI" : "mongodb+srv://haasirhssn:Yasar@1997@cluster0-qqh5c.mongodb.net/users?retryWrites=true&w=majority"
     },
     "development" : 
     {
         "PORT" : 3000,
-        "MONGODB_URI" : "mongodb://localhost:27017/UserInternDB"
+        "MONGODB_URI" : "mongodb+srv://haasirhssn:Yasar@1997@cluster0-qqh5c.mongodb.net/UserInternDB"
+        
 
     }
 }

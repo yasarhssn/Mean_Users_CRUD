@@ -39,18 +39,22 @@ export class UsersComponent implements OnInit {
   }
   onSubmit(form : NgForm)
   {
-   if(form.value._id== "") 
+   if(form.value._id=="") 
    {
     console.log('onSubmit::' + form.value);   
     console.log('onSubmit::' + JSON.stringify(form.value,undefined,2));   
     this.userService.postUser(form.value).subscribe((res)=>
     {
-        console.log('postUser->correctly saved');
+        
         form.resetForm();
+        console.log('postUser->correctly saved:form-id-value::' + form.value._id);
+        form.value._id="";
+        this.refreshUserList();
+        
     },
     (err)=>
     {
-      console.log('postUser->not yet correctly saved');
+      console.log('postUser->not yet correctly saved-error coming:' + JSON.stringify(err,undefined,2));
     });
   }
   else
@@ -58,8 +62,11 @@ export class UsersComponent implements OnInit {
      this.userService.putUser(form.value).subscribe((res)=>
      {
         console.log('User updated successfully');
-        this.refreshUserList();
         form.resetForm();
+        console.log('after-updated-form-id::' + form.value._id);
+        form.value._id="";
+        this.refreshUserList();
+        
      },
      (err)=>
      {
